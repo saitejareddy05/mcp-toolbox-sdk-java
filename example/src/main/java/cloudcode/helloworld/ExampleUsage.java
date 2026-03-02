@@ -101,7 +101,7 @@ try {
                     return client.invokeTool("get-retail-facet-filters", Map.of());
                 })
                 .thenCompose(result -> {
-                    System.out.println("    -> Result: " + (result.content() != null ? "Received Data" : "Empty"));
+                        System.out.println("    -> Result: " + (result.content() != null ? "Received Data" : "Empty"));
 
                     // STEP 3: INVOKE TOOL WITH AUTHENTICATED PARAMETERS
                     System.out.println("\n[5] Testing Authenticated Tool: 'get-toy-price'...");
@@ -121,7 +121,8 @@ try {
                     return tool.execute(Map.of("description", "barbie"))
                         .thenCompose(result1 -> {
                             if (result1.content() != null && !result1.content().isEmpty()) {
-                                System.out.println("    -> Result (Unbound): " + result1.content().get(0).text());
+                                        System.out
+                                                .println("    -> Result (Unbound): " + result1.content().get(0).text());
                             }
 
                             // NOW bind the parameter
@@ -136,9 +137,9 @@ try {
                 .thenAccept(result -> {
                     System.out.println("\n[6] Final Result (Bound):");
                     if (result.isError()) {
-                        System.err.println("Tool execution failed: " + result.content().get(0).text());
+                            System.err.println("Tool execution failed: " + result.content().get(0).text());
                     } else if (result.content() != null && !result.content().isEmpty()) {
-                        String output = result.content().get(0).text();
+                            String output = result.content().get(0).text();
                         System.out.println("    " + output.substring(0, Math.min(output.length(), 200)) + "...");
                     } else {
                         System.out.println("    Empty Response");
